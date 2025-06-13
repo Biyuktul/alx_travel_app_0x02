@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from alx_travel_app.listings.serializers import ListingSerializer, BookingSerializer
+from models import Listing, Booking
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+class ListingViewSet(ModelViewSet):
+    queryset = Listing.objects.all()
+    serializer_class = ListingSerializer
+
+class BookingViewSet(ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer    
+    
