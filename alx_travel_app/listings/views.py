@@ -1,5 +1,5 @@
-from alx_travel_app.listings.serializers import ListingSerializer, BookingSerializer
-from models import Listing, Booking
+from .serializers import ListingSerializer, BookingSerializer
+from .models import Listing, Booking
 from rest_framework.viewsets import ModelViewSet
 
 class ListingViewSet(ModelViewSet):
