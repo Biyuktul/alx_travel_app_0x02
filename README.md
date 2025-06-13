@@ -1,33 +1,32 @@
-# alx_travel_app_0x00
+# alx_travel_app_0x02
 
-## Milestone 2: Creating Models, Serializers, and Seeders
+## Milestone 3: Creating Views and API Endpoints
 
-This milestone expands the backend foundation by defining the core data models, setting up serializers for API representation, and implementing data seeding for development and testing.
+This milestone delivers API endpoints for managing listings and bookings, enabling full CRUD operations and interactive API documentation for the Django-based travel platform.
 
 ---
 
 ### Project Overview
 
-This repository covers database modeling, serialization, and data seeding for the Django-based travel listing platform. The focus is on building robust and relational models, enabling API-ready data structures, and providing tools to populate the system with initial data.
+This repository introduces REST API endpoints for the core models using Django REST Framework viewsets, and organizes URLs to follow standard RESTful practices. All endpoints are automatically documented via Swagger.
 
 ---
 
 ### Key Features
 
-- Database models for `Listing`, `Booking`, and `Review` in `listings/models.py`
-- Serializers for `Listing` and `Booking` in `listings/serializers.py`
-- Custom Django management command for seeding sample listings data:  
-  `listings/management/commands/seed.py`
-- All models designed with appropriate fields, relationships, and constraints
+- ViewSets for `Listing` and `Booking` in `listings/views.py` (using `ModelViewSet` for CRUD operations)
+- RESTful API endpoints under `/api/` using DRF routers, configured in `listings/urls.py`
+- Automated Swagger documentation for all endpoints
+- Fully testable using Postman or similar API tools
 
 ---
 
 ### Requirements
 
 - Django, Django REST Framework
-- MySQL (as configured in Milestone 1)
-- Environment variables handled via `django-environ`
-- Project cloned and set up as per previous milestone
+- MySQL (configured as in previous milestones)
+- drf-yasg for Swagger docs
+- Project setup and migrations completed
 
 ---
 
@@ -42,23 +41,20 @@ This repository covers database modeling, serialization, and data seeding for th
    ```bash
    python manage.py migrate
    ```
-4. Seed the database with sample listings:
-   ```bash
-   python manage.py seed
-   ```
-5. Start the development server:
+4. Start the development server:
    ```bash
    python manage.py runserver
    ```
-6. Use Postman to test the API endpoints for listings and bookings.
+5. Use Postman to test the API endpoints for listings and bookings under `/api/` (CRUD: GET, POST, PUT, DELETE).
+6. View API documentation at [http://localhost:8000/swagger/](http://localhost:8000/swagger/).
 
 ---
 
 ### Structure
 
-- `listings/models.py` — Contains `Listing`, `Booking`, and `Review` models
-- `listings/serializers.py` — Serializers for API data representation
-- `listings/management/commands/seed.py` — Seeder command for populating sample data
+- `listings/views.py` — ViewSets for `Listing` and `Booking`
+- `listings/urls.py` — API routing using DRF routers
+- `README.md` — This file
 
 ---
 
