@@ -1,48 +1,25 @@
 from rest_framework import serializers
-from .models import Listing, Booking, Review
+from .models import Listing, Booking, Payment
 
 class ListingSerializer(serializers.ModelSerializer):
-    owner = serializers.StringRelatedField(read_only=True)
-
     class Meta:
         model = Listing
-        fields = [
-            'id',
-            'title',
-            'description',
-            'location',
-            'price_per_night',
-            'owner',
-            'created_at',
-        ]
+        fields = '__all__'
+        #read_only_fields = ['host', 'created_at']
+
 
 class BookingSerializer(serializers.ModelSerializer):
-    listing = serializers.PrimaryKeyRelatedField(queryset=Listing.objects.all())
-    user = serializers.StringRelatedField(read_only=True)
+    total_price = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Booking
-        fields = [
-            'id',
-            'listing',
-            'user',
-            'check_in',
-            'check_out',
-            'guests',
-            'created_at',
-        ]
+        fields = '__all__'
+        #read_only_fields = ['user', 'created_at', 'total_price']
 
-class ReviewSerializer(serializers.ModelSerializer):
-    listing = serializers.PrimaryKeyRelatedField(queryset=Listing.objects.all())
-    user = serializers.StringRelatedField(read_only=True)
+    def get_total_price(self, obj):
+        return obj.total_price()
 
+class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Review
-        fields = [
-            'id',
-            'listing',
-            'user',
-            'rating',
-            'comment',
-            'created_at',
-        ]
+        model = Payment
+        fields = '__all__'
